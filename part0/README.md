@@ -19,7 +19,7 @@ server-->browser: main.js
 browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
 server-->browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
 ```
-![0.4 png](assets/my-logo.svg)
+![part0-1](https://user-images.githubusercontent.com/47068465/144069359-e1af5ebc-3a7b-4b9f-b93e-5d700a7a3bd3.png)
 
 # 0.5: Single page app
 
@@ -45,7 +45,7 @@ browser executes the event handler
 that renders notes to display
 end note
 ```
-![0.4 png](assets/my-logo.svg)
+![part0-2](https://user-images.githubusercontent.com/47068465/144069363-634c0ae5-cfe1-49f3-85d8-973798b37d9e.png)
 
 # 0.6: New note
 
@@ -66,4 +66,4 @@ browser executes the event handler
 that renders notes to display
 end note
 ```
-![0.4 png](assets/my-logo.svg)
+![part0-3](https://user-images.githubusercontent.com/47068465/144069352-c93f224f-1272-49b0-a2ee-ce9e5e274383.png)
