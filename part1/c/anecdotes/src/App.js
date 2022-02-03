@@ -40,6 +40,8 @@ const App = () => {
     setPoints(copy);
   };
 
+  
+
   return (
     <div>
       <div style={{ height: "125px" }}>{anecdotes[selected]}</div>
