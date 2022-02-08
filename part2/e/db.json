@@ -1,0 +1,29 @@
+{
+  "persons": [
+    {
+      "name": "Kramer",
+      "number": "1",
+      "id": 1
+    },
+    {
+      "name": "George Costanza",
+      "number": "2",
+      "id": 2
+    },
+    {
+      "name": "Elaine Benes",
+      "number": "3",
+      "id": 3
+    },
+    {
+      "name": "Newman",
+      "number": "4",
+      "id": 4
+    },
+    {
+      "name": "Jerry Seinfeld",
+      "number": "5",
+      "id": 5
+    }
+  ]
+}
