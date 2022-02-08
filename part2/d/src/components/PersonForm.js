@@ -1,8 +1,4 @@
-import { useState } from "react";
-
-const PersonForm = ({addPerson,handleName,handleNumber}) => {
-
-  
+const PersonForm = ({addPerson,handleName,handleNumber}) => { 
   return (
     <>
       <form onSubmit={addPerson}>
