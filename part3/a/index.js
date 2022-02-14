@@ -1,7 +1,15 @@
 const express = require("express");
+const { json } = require("express/lib/response");
 const app = express();
+const morgan = require("morgan");
+
+morgan.token("person", (req) => {
+  return req.person;
+});
 
 app.use(express.json());
+app.use(logger);
+app.use(morgan(":method :url :status :response-time :person "));
 
 let persons = [
   {
@@ -25,6 +33,11 @@ let persons = [
     number: "39-23-6423122",
   },
 ];
+
+function logger(req, res, next) {
+  req.person = JSON.stringify(req.body);
+  next();
+}
 
 const generateID = () => {
   return Math.max(...persons.map((person) => person.id)) + 1;
