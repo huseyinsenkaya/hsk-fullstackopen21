@@ -52,23 +52,20 @@ app.get("/api/persons/:id", (req, res, next) => {
 });
 
 // POST
-app.post("/api/persons", (req, res) => {
+app.post("/api/persons", (req, res, next) => {
   const body = req.body;
-
-  if (!body || !body.name || !body.number) {
-    return res.status(404).json({
-      error: "content missing",
-    });
-  }
 
   const person = new Person({
     name: body.name,
     number: body.number,
   });
 
-  person.save().then((savedPerson) => {
-    res.json(savedPerson);
-  });
+  person
+    .save()
+    .then((savedPerson) => {
+      res.json(savedPerson);
+    })
+    .catch((err) => next(err));
 });
 
 // DELETE
@@ -92,21 +89,28 @@ app.put("/api/persons/:id", (req, res, next) => {
     number: body.number,
   };
 
-  Person.findByIdAndUpdate(id, changedPerson, { new: true })
+  Person.findByIdAndUpdate(id, changedPerson, {
+    new: true,
+    runValidators: true,
+    context: "query",
+  })
     .then((returnedPerson) => {
-      if (returnedPerson) {
-        res.json(returnedPerson);
-      } else {
-        res.status(400).end();
-      }
+      res.json(returnedPerson);
     })
     .catch((err) => next(err));
 });
 
 //Error handler
 app.use((err, req, res, next) => {
-  console.log("here");
-  res.status(400).send("Error");
+  console.log(err.name);
+
+  if (err.name === "CastError") {
+    return res.status(400).send({ error: "malformatted id" });
+  } else if (err.name === "ValidationError") {
+    console.log(err);
+    return res.status(400).json({ error: err.message });
+  }
+  next(err);
 });
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
